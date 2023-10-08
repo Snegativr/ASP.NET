@@ -1,0 +1,25 @@
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\appsettings.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\ASP.NET LR_1.exe
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\ASP.NET LR_1.deps.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\ASP.NET LR_1.runtimeconfig.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\ASP.NET LR_1.dll
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\ASP.NET LR_1.pdb
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.AssemblyInfo.cs
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets\msbuild.ASP.NET LR_1.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets\msbuild.build.ASP.NET LR_1.props
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ASP.NET LR_1.props
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ASP.NET LR_1.props
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\scopedcss\bundle\ASP.NET LR_1.styles.css
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.dll
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\refint\ASP.NET LR_1.dll
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.pdb
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.genruntimeconfig.cache
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ref\ASP.NET LR_1.dll
