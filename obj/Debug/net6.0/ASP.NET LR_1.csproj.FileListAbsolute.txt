@@ -23,3 +23,6 @@ C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\refint\ASP
 C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.pdb
 C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.genruntimeconfig.cache
 C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ref\ASP.NET LR_1.dll
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ASP.NET LR_1\ASP.NET LR_1\obj\Debug\net6.0\ASP.NET LR_1.csproj.CopyComplete
