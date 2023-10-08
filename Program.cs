@@ -1,24 +1,66 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Services.AddTransient<Company>();
+builder.Services.AddTransient<Person>();
+
+builder.Configuration.AddJsonFile("new/Companies.json");
+
 var app = builder.Build();
+var configuration = app.Services.GetService<IConfiguration>();
+var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "new/persons");
 
-app.Run(async context =>
+if (File.Exists(jsonFilePath))
 {
-    Company company = new Company();
-    company.Name = "Name111";
-    company.Email = "Email222";
-    company.Address = "Address333";
+    var jsonContent = File.ReadAllText(jsonFilePath);
+}
 
-    Random random = new Random();
-    int randomNumber = random.Next(0, 101);
+app.Map("/", () => "Index Page");
 
-    await context.Response.WriteAsync($"Compamy:\n {company.Name} \n {company.Email} \n {company.Address} ");
-    await context.Response.WriteAsync($"\nRandom number: {randomNumber}");
+app.Map("/Companies", async (context) =>
+{
+    await context.Response.WriteAsync("Hello world!");
+});
+
+app.Map("/Companies/company", async (context) =>
+{
+    var company = app.Services.GetService<Company>();
+    var companiesList = configuration.GetSection("Companies").Get<List<Company>>();
+    foreach (var item in companiesList)
+    {
+        await context.Response.WriteAsync($"Company: {item.Name}; Numer of Employers: {item.NumberOfEmpl}\n");
+    }
+});
+
+app.Map("/Companies/Profile/{id:int?}", (int? id) =>
+{
+    if (id.HasValue && id >= 0 && id <= 5)
+    {
+        var configFileName = $"new/persons/person{id}.json";
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), configFileName);
+
+        if (File.Exists(filePath))
+        {
+            var Person = JsonConvert.DeserializeObject<Person>(File.ReadAllText(filePath));
+            return $"Name: {Person.Name}, Age: {Person.Age}";
+        }
+        else
+        {
+            return "File configuration of person is not found.";
+        }
+    }
+    else
+    {
+
+        var defaultPerson = JsonConvert.DeserializeObject<Person>(File.ReadAllText("person0.json"));
+        return $"Name: {defaultPerson.Name}, Age: {defaultPerson.Age}";
+    }
 
 });
+
+app.MapGet("/allmaps", (IEnumerable<EndpointDataSource> endpointSources) =>
+string.Join("\n", endpointSources.SelectMany(source => source.Endpoints)));
+
 app.Run();
-public class Company
-{
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Address { get; set; }
-}
