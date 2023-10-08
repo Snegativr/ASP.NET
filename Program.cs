@@ -1,66 +1,64 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-
+using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
+//1
 var builder = WebApplication.CreateBuilder();
-
-builder.Services.AddTransient<Company>();
-builder.Services.AddTransient<Person>();
-
-builder.Configuration.AddJsonFile("new/Companies.json");
-
+builder.Configuration
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("config.json")
+    .AddXmlFile("config.xml")
+    .AddIniFile("config.ini")
+    .AddJsonFile("Person.json");
 var app = builder.Build();
-var configuration = app.Services.GetService<IConfiguration>();
-var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "new/persons");
 
-if (File.Exists(jsonFilePath))
+app.Services.GetService<IConfiguration>();
+
+
+var result = app.Map("/", async (HttpContext context) =>
 {
-    var jsonContent = File.ReadAllText(jsonFilePath);
-}
-
-app.Map("/", () => "Index Page");
-
-app.Map("/Companies", async (context) =>
-{
-    await context.Response.WriteAsync("Hello world!");
-});
-
-app.Map("/Companies/company", async (context) =>
-{
-    var company = app.Services.GetService<Company>();
-    var companiesList = configuration.GetSection("Companies").Get<List<Company>>();
-    foreach (var item in companiesList)
+    var configuration = context.RequestServices.GetRequiredService<IConfiguration>();
+    var companies = new List<Company>
     {
-        await context.Response.WriteAsync($"Company: {item.Name}; Numer of Employers: {item.NumberOfEmpl}\n");
-    }
-});
+        new Company { Name = configuration["comp1"], Employee = configuration["Employee1"] },
+        new Company { Name = configuration["comp2"], Employee = configuration["Employee2"] },
+        new Company { Name = configuration["comp3"], Employee = configuration["Employee3"] },
+    };
 
-app.Map("/Companies/Profile/{id:int?}", (int? id) =>
-{
-    if (id.HasValue && id >= 0 && id <= 5)
-    {
-        var configFileName = $"new/persons/person{id}.json";
-        var filePath = Path.Combine(Directory.GetCurrentDirectory(), configFileName);
+    var companyInfo = string.Join("\n", companies.Select(c => $"{c.Name} - {c.Employee}"));
 
-        if (File.Exists(filePath))
-        {
-            var Person = JsonConvert.DeserializeObject<Person>(File.ReadAllText(filePath));
-            return $"Name: {Person.Name}, Age: {Person.Age}";
-        }
-        else
-        {
-            return "File configuration of person is not found.";
-        }
-    }
-    else
-    {
+    var maxEmployees = companies.Max(c => c.Employee);
+    var companyWithMostEmployees = companies.FirstOrDefault(c => c.Employee == maxEmployees);
 
-        var defaultPerson = JsonConvert.DeserializeObject<Person>(File.ReadAllText("person0.json"));
-        return $"Name: {defaultPerson.Name}, Age: {defaultPerson.Age}";
-    }
+    var person = new Person();
+    configuration.Bind(person);
+
+    await context.Response.WriteAsync(companyInfo);
+    await context.Response.WriteAsync($"\nThe largest number of employees has: {companyWithMostEmployees.Name}\n");
+
+    await context.Response.WriteAsync(
+        $"\nName: {person.Name}\n" +
+        $"Surname: {person.Surname}\n" +
+        $"Age: {person.Age}\n"
+        );
+
 
 });
-
-app.MapGet("/allmaps", (IEnumerable<EndpointDataSource> endpointSources) =>
-string.Join("\n", endpointSources.SelectMany(source => source.Endpoints)));
 
 app.Run();
+
+// for 1 
+public class Company
+{
+    public string Name { get; set; }
+    public string Employee { get; set; }
+}
+// for 2
+public class Person
+{
+    public string Name { get; set; }
+    public string Surname { get; set; } 
+    public int Age { get; set; }
+}
