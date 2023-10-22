@@ -1,0 +1,19 @@
+<h2>Order list</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name of product</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>

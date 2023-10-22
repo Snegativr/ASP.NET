@@ -1,24 +1,27 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
-app.Run(async context =>
+if (!app.Environment.IsDevelopment())
 {
-    Company company = new Company();
-    company.Name = "Name111";
-    company.Email = "Email222";
-    company.Address = "Address333";
-
-    Random random = new Random();
-    int randomNumber = random.Next(0, 101);
-
-    await context.Response.WriteAsync($"Compamy:\n {company.Name} \n {company.Email} \n {company.Address} ");
-    await context.Response.WriteAsync($"\nRandom number: {randomNumber}");
-
-});
-app.Run();
-public class Company
-{
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Address { get; set; }
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Shop}/{action=Registration}/{id?}");
+});
+
+app.Run();

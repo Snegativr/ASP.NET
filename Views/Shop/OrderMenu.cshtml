@@ -1,0 +1,16 @@
+@model AspNetMVC.Models.User
+
+<h2>Menu</h2>
+<h3>Select the desired quantity</h3>
+<form asp-action="OrderMenu" method="post">
+    @for (var i = 0; i < Model.Products.Count; i++)
+    {
+        <div class="form-group">
+            <label asp-for="Products[i].Name">Name of product:</label>
+            <input asp-for="Products[i].Name" class="form-control" readonly />
+            <label asp-for="Products[i].Quantity">Quantity:</label>
+            <input asp-for="Products[i].Quantity" class="form-control" type="number" min="0"/>
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
