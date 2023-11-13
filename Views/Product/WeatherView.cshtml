@@ -1,0 +1,32 @@
+@model AspNetMVC.Models.WeatherModel
+<div>
+
+    <h3>Погода в @Model.City</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Середня температура</th>
+                <th>Мінімальна температура</th>
+                <th>Максимальна температура</th>
+                <th>Тиск</th>
+                <th>Погода</th>
+                <th>Вологість</th>
+                <th>Швидкість вітру</th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td>@Model.Temperature °C</td>
+            <td>@Model.TempMin °C</td>
+            <td>@Model.TempMax °C</td>
+            <td>@Model.Pressure</td>
+            <td>@Model.WeatherType</td>
+            <td>@Model.Humidity%</td>
+            <td>@Model.WindSpeed м/с </td>
+
+        </tr>
+
+
+    </table>
+
+</div>
