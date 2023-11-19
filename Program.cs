@@ -1,24 +1,33 @@
+using Microsoft.AspNetCore.Mvc;
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
-app.Run(async context =>
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
 {
-    Company company = new Company();
-    company.Name = "Name111";
-    company.Email = "Email222";
-    company.Address = "Address333";
-
-    Random random = new Random();
-    int randomNumber = random.Next(0, 101);
-
-    await context.Response.WriteAsync($"Compamy:\n {company.Name} \n {company.Email} \n {company.Address} ");
-    await context.Response.WriteAsync($"\nRandom number: {randomNumber}");
-
-});
-app.Run();
-public class Company
-{
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Address { get; set; }
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Registration}/{action=Index}");
+});
+
+app.Run();

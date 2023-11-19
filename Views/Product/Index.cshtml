@@ -1,0 +1,24 @@
+﻿﻿@using AspNetMVC.Models
+@{
+
+    List<ProductModel> products = new List<ProductModel>();
+    products.Add(new ProductModel { ID = 1, Name = "Product 1", Price = 111 });
+    products.Add(new ProductModel { ID = 2, Name = "Product 2", Price = 222 });
+    products.Add(new ProductModel { ID = 3, Name = "Product 3", Price = 333 });
+    products.Add(new ProductModel { ID = 4, Name = "Product 4", Price = 444 });
+    products.Add(new ProductModel { ID = 5, Name = "Product 5", Price = 555 });
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div>
+        @await Component.InvokeAsync("Product", new {products=products})
+    </div>
+    <div>
+        @await Component.InvokeAsync("Weather")
+    </div>
+</body>
+</html>

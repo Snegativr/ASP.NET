@@ -1,0 +1,51 @@
+@model RegistrationModel
+
+<div class="container mt-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Registration</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-controller="Registration" asp-action="Registration">
+
+                        <div class="form-group">
+                            <label asp-for="Name">Username:</label>
+                            <input asp-for="Name" class="form-control" placeholder="Username" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email">Email:</label>
+                            <input asp-for="Email" class="form-control" placeholder="Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="RegistrationDate">Registration date:</label>
+                            <input asp-for="RegistrationDate" type="date" class="form-control" />
+                            <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="SelectedProduct">Select product</label>
+                            <select asp-for="SelectedProduct" class="form-control">
+                                <option value="">Select a product</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="C#">C#</option>
+                                <option value="Java">Java</option>
+                                <option value="Python">Python</option>
+                                <option value="Основи">Основи</option>
+                            </select>
+                            <span asp-validation-for="SelectedProduct" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger mt-3">Зареєструватися</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
