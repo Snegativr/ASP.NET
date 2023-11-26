@@ -12,6 +12,10 @@ namespace AspNetMVC.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            if (!File.Exists(usersFilePath))
+            {
+                File.WriteAllText(usersFilePath, string.Empty);
+            }
             string userIpAddress = context.HttpContext.Connection.RemoteIpAddress.ToString();
 
             var uniqueRecords = File.ReadAllLines(usersFilePath, Encoding.UTF8).ToHashSet();
