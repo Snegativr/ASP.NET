@@ -14,22 +14,14 @@ namespace AspNetMVC.Filters
         {
             string userIpAddress = context.HttpContext.Connection.RemoteIpAddress.ToString();
 
-            string[] testIpAddresses = { "192.168.0.1", "192.168.0.2", "192.168.0.3" };
+            var uniqueRecords = File.ReadAllLines(usersFilePath, Encoding.UTF8).ToHashSet();
 
-            string TestIp = testIpAddresses[new Random().Next(0, testIpAddresses.Length)];
-
-            string timestamp = DateTime.Now.ToString();
-
-            if (!File.Exists(usersFilePath))
+            if (!uniqueRecords.Contains(userIpAddress))
             {
-                File.WriteAllText(usersFilePath, string.Empty);
-            }
+                uniqueRecords.Add(userIpAddress);
 
-            if (!File.ReadAllLines(usersFilePath, Encoding.UTF8).Contains(userIpAddress))
-            {
-                File.AppendAllText(usersFilePath, "User ip adress " + userIpAddress + "Test Ip Adress " + TestIp + "  At Date " + timestamp + "\n", Encoding.UTF8);
+                File.WriteAllLines(usersFilePath, uniqueRecords, Encoding.UTF8);}
             }
-        }
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
